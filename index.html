@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TILT — Premium Fast Food Experience</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* --- CONSTANTS & RESET --- */
+        :root {
+            --bg-color: #0A0A0A;
+            --bg-color: #141210;
+            --nav-bg: #191715;
+            --card-bg: #1E1A18;
+            --section-bg: #171412;
+            --border-color: #3A322B;
+            --primary-gold: #C8A44D;
+            --light-gold: #E5C978;
+            --text-main: #F7F4EF;
+            --text-secondary: #B5ADA4;
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --font-price: 'Montserrat', sans-serif;
+            --transition-smooth: cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            opacity: 0;
+            animation: pageFadeIn 1.2s var(--transition-smooth) forwards;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes goldShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- LOGO HEADER & HERO --- */
+        header {
+            padding: 4rem 1rem 2rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .brand-logo {
+            font-family: var(--font-title);
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: 0.6rem;
+            color: var(--light-gold);
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary-gold), var(--light-gold), var(--primary-gold));
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShine 6s linear infinite;
+        }
+
+        .brand-slogan {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        /* --- STICKY NAVIGATION --- */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(25, 23, 21, 0.8); /* --nav-bg with transparency */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1.75rem;
+            padding: 1rem 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        nav::-webkit-scrollbar {
+            display: none; /* Safari/Chrome */
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            padding: 0.5rem 0.75rem;
+            transition: all 0.4s var(--transition-smooth);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-main);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-gold);
+            transition: all 0.4s var(--transition-smooth);
+            transform: translateX(-50%);
+            box-shadow: 0 0 8px var(--primary-gold), 0 0 12px var(--light-gold);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 70%;
+        }
+
+        /* --- GLOBAL WRAPPER & LAYOUT --- */
+        main {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .menu-section {
+            margin-bottom: 6rem;
+            scroll-margin-top: 100px;
+        }
+
+        /* --- SECTION HEADERS --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title-en {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: 0.25rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-title-ku {
+            font-family: var(--font-body);
+            font-size: 1.25rem;
+            color: var(--primary-gold);
+            font-weight: 400;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.05rem;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .section-divider::before, .section-divider::after {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color));
+        }
+
+        .section-divider::after {
+            background: linear-gradient(270deg, transparent, var(--border-color));
+        }
+
+        .section-divider span {
+            font-size: 0.6rem;
+            color: var(--primary-gold);
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+        }
+
+        /* --- GRID AND PREMIUM CARDS --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem 2rem;
+        }
+
+        .menu-card {
+            background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.04), transparent 70%), var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-color);
+            transition: transform 0.6s var(--transition-smooth), 
+                        border-color 0.6s var(--transition-smooth), 
+                        box-shadow 0.6s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.02);
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 201, 120, 0.05), transparent);
+            transform: skewX(-25deg);
+            transition: left 0.8s var(--transition-smooth);
+            z-index: 1;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            border-color: #4a4035;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(200, 164, 77, 0.1);
+        }
+
+        .menu-card:hover::before {
+            left: 150%;
+        }
+
+        /* Image Display Frame */
+        .image-container {
+            width: 100%;
+            height: 240px;
+            background-color: #1A1A1A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .food-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s var(--transition-smooth), filter 0.7s var(--transition-smooth);
+            opacity: 1;
+            background: radial-gradient(circle, #2A2A2A 0%, #121212 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: brightness(1.15) contrast(1.08) saturate(1.1) opacity(0.95);
+        }
+
+        .food-image::before {
+            content: 'TILT FINE CUISINE';
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.25rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-card:hover .food-image {
+            transform: scale(1.05);
+            filter: brightness(1.2) contrast(1.1) saturate(1.15) opacity(1);
+        }
+
+        /* Gold Absolute Index Counter */
+        .item-number {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(145deg, var(--light-gold), var(--primary-gold));
+            color: #141210;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-price);
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        /* Content Context Layout */
+        .card-details {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .titles-wrapper {
+            margin-bottom: 1.5rem;
+        }
+
+        .title-en {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.02rem;
+        }
+
+        .title-ku {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Prices and Variations Configurations */
+        .price-engine {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.25rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .price-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            color: var(--text-secondary);
+        }
+
+        .price-value {
+            font-family: var(--font-price);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+        }
+
+        .single-price {
+            font-family: var(--font-price);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            text-align: right;
+            display: block;
+        }
+
+        /* --- EXTRA SAUCE TILES STYLE --- */
+        .sauce-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .sauce-tile {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.5s var(--transition-smooth);
+        }
+
+        .sauce-tile:hover {
+            border-color: var(--border-color);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .sauce-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #252525 0%, #121212 100%);
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .sauce-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sauce-tile:hover .sauce-circle {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 8px var(--primary-gold);
+        }
+
+        .sauce-info {
+            flex-grow: 1;
+        }
+
+        .sauce-en {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 0.15rem;
+        }
+
+        .sauce-ku {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: block;
+        }
+
+        .sauce-price {
+            font-family: var(--font-price);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            white-space: nowrap;
+        }
+
+        /* --- LUXURY FOOTER --- */
+        footer {
+            margin-top: 8rem;
+            border-top: 1px solid #221e1a;
+            padding: 3rem 1rem;
+            text-align: center;
+            background-color: #060606;
+        }
+
+        .footer-text {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 0.2rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .developer-credit {
+            font-family: var(--font-body);
+            font-size: 0.8rem; /* ~12.8px */
+            letter-spacing: 0.25rem; /* 4px */
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-top: 2.5rem;
+            transition: color 0.5s var(--transition-smooth);
+        }
+
+        .developer-credit:hover {
+            color: var(--primary-gold);
+        }
+
+        /* --- DRINKS SECTION IMAGE OVERRIDE --- */
+        #drinks .menu-card .food-image {
+            object-fit: contain;
+            height: 240px;
+            filter: brightness(1.15) contrast(1.08) saturate(1.1) opacity(1);
+        }
+
+        /* --- RESPONSIVE ADAPTATIONS --- */
+        @media (max-width: 768px) {
+            .brand-logo { font-size: 3rem; letter-spacing: 0.4rem; }
+            .brand-slogan { font-size: 0.75rem; letter-spacing: 0.25rem; }
+            .section-title-en { font-size: 2rem; }
+            nav { padding: 1rem; gap: 1.25rem; }
+            main { padding: 0 1rem; }
+            .menu-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style><style>.food-image{width:100%;height:220px;object-fit:cover;border-radius:18px;display:block}.menu-card:hover .food-image{transform:scale(1.05);transition:.4s}</style></head>
+<body>
+<header>
+<div class="brand-logo">Tilt</div>
+<div class="brand-slogan">Premium Fast Food Experience</div>
+</header>
+<div class="nav-container">
+<nav id="category-nav">
+<a class="active" href="#beef-burgers">Beef Burgers</a>
+<a href="#chicken-burgers">Chicken Burgers</a>
+<a href="#wraps">Wraps</a>
+<a href="#pizza">Pizza</a>
+<a href="#tender">Tender</a>
+<a href="#rizo">Rizo</a>
+<a href="#side-dish">Side Dish</a>
+<a href="#wings">Wings</a>
+<a href="#fride">Fride</a>
+<a href="#pasta">Pasta</a>
+<a href="#salad">Salad</a>
+<a href="#extra-sauce">Extra Sauce</a>
+<a href="#drinks">Drinks</a>
+</nav>
+</div>
+<main>
+<section class="menu-section" id="beef-burgers">
+<div class="section-header">
+<h2 class="section-title-en">Beef Burgers</h2>
+<div class="section-title-ku">بەرگەری گۆشت</div>
+<div class="section-divider"><span>Premium Selection</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">1</div>
+<img class="food-image" loading="lazy" src="images/Classic burger.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Classic Burger</h3>
+<p class="title-ku">کلاسیک بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">7,000 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">9,000 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">2</div>
+<img class="food-image" loading="lazy" src="images/Smash cheese burger..PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Smash Cheese Burger</h3>
+<p class="title-ku">سماش چیز بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">7,000 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">9,000 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">3</div>
+<img class="food-image" loading="lazy" src="images/Smoke burger..PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Smoke Burger</h3>
+<p class="title-ku">سموک بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">7,000 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">9,000 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">4</div>
+<img class="food-image" loading="lazy" src="images/Dublle burger .PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Double Smash Cheese Burger</h3>
+<p class="title-ku">دەبڵ سماش چیز بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">9,000 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">11,000 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">5</div>
+<img class="food-image" loading="lazy" src="images/Mushroom burger..PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Smash Mushroom Burger</h3>
+<p class="title-ku">سماش مەشروم بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">7,750 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">9,750 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">6</div>
+<img class="food-image" loading="lazy" src="images/Volcaino burger (2).jpg"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Volcano Burger</h3>
+<p class="title-ku">فۆلکانۆ بەرگەر</p>
+</div>
+<div class="price-engine">
+<span class="single-price">7,500 IQD</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="chicken-burgers">
+<div class="section-header">
+<h2 class="section-title-en">Chicken Burgers</h2>
+<div class="section-title-ku">بەرگەری مریشک</div>
+<div class="section-divider"><span>Crispy &amp; Tender</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">7</div>
+<img class="food-image" loading="lazy" src="images/Buffalo chicken burger.jpg"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Buffalo Chicken Burger</h3>
+<p class="title-ku">بوفالۆ چیکن بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">7,000 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">9,000 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">8</div>
+<img class="food-image" loading="lazy" src="images/Chicken cheese burger .jpg"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Chicken Cheese Burger</h3>
+<p class="title-ku">چیکن چیز بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">7,000 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">9,000 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">9</div>
+<img class="food-image" loading="lazy" src="images/Honey mustard chicken burger.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Honey Mustard Chicken Burger</h3>
+<p class="title-ku">هەنی مەستەردە چیکن بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">7,500 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">9,500 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">10</div>
+<img class="food-image" loading="lazy" src="images/Smoke chicken burger.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Smoke Chicken Burger</h3>
+<p class="title-ku">سموک چیکن بەرگەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">Without Combo</span><span class="price-value">7,500 IQD</span></div>
+<div class="price-row"><span class="price-label">With Combo</span><span class="price-value">9,500 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">11</div>
+<img class="food-image" loading="lazy" src="images/Combo1.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Tilt Mega Mix</h3>
+<p class="title-ku">تیلت مێگا میکس</p>
+</div>
+<div class="price-engine">
+<span class="single-price">10,500 IQD</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="wraps">
+<div class="section-header">
+<h2 class="section-title-en">Wraps</h2>
+<div class="section-title-ku">راپ</div>
+<div class="section-divider"><span>Gourmet Rolls</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">12</div>
+<img class="food-image" loading="lazy" src="images/Tilt wrap.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Tilt Wrap</h3>
+<p class="title-ku">تیلت راپ</p>
+</div>
+<div class="price-engine"><span class="single-price">7,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">13</div>
+<img class="food-image" loading="lazy" src="images/classic wrap.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Classic Wrap</h3>
+<p class="title-ku">کلاسیک راپ</p>
+</div>
+<div class="price-engine"><span class="single-price">5,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">14</div>
+<img class="food-image" loading="lazy" src="images/Cecar wrap.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Caesar Wrap</h3>
+<p class="title-ku">سیزەر راپ</p>
+</div>
+<div class="price-engine"><span class="single-price">6,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">15</div>
+<img class="food-image" loading="lazy" src="images/golden wrap.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Golden Wrap</h3>
+<p class="title-ku">گۆلدن راپ</p>
+</div>
+<div class="price-engine"><span class="single-price">5,000 IQD</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="pizza">
+<div class="section-header">
+<h2 class="section-title-en">Pizza</h2>
+<div class="section-title-ku">پیتزا</div>
+<div class="section-divider"><span>Stone Baked Artisanal</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">16</div>
+<img class="food-image" loading="lazy" src="images/mix pizza.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Mix Pizza</h3>
+<p class="title-ku">میکس پیتزا</p>
+</div>
+<div class="price-engine"><span class="single-price">8,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">17</div>
+<img class="food-image" loading="lazy" src="images/Pizza mreshk.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Chicken Pizza</h3>
+<p class="title-ku">چیکن پیتزا</p>
+</div>
+<div class="price-engine"><span class="single-price">8,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">18</div>
+<img class="food-image" loading="lazy" src="images/Graud meet pizza.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Ground Meat Pizza</h3>
+<p class="title-ku">گراوند میت پیتزا</p>
+</div>
+<div class="price-engine"><span class="single-price">8,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">19</div>
+<img class="food-image" loading="lazy" src="images/Pizza alfredo.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Alfredo Pizza</h3>
+<p class="title-ku">ئالفرێدۆ پیتزا</p>
+</div>
+<div class="price-engine"><span class="single-price">7,750 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">20</div>
+<img class="food-image" loading="lazy" src="images/Pizza vegetable.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Vegetable Pizza</h3>
+<p class="title-ku">ڤێجتەبڵ پیتزا</p>
+</div>
+<div class="price-engine"><span class="single-price">7,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">21</div>
+<img class="food-image" loading="lazy" src="images/Tendar pizza.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Tender Pizza</h3>
+<p class="title-ku">تێندەر پیتزا</p>
+</div>
+<div class="price-engine"><span class="single-price">8,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">22</div>
+<img class="food-image" loading="lazy" src="images/pizza margreta.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Margherita Pizza</h3>
+<p class="title-ku">مارگەریتا پیتزا</p>
+</div>
+<div class="price-engine"><span class="single-price">7,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">23</div>
+<img class="food-image" loading="lazy" src="images/pepperoni pizza.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Pepperoni Pizza</h3>
+<p class="title-ku">پەپەرۆنی پیتزا</p>
+</div>
+<div class="price-engine"><span class="single-price">8,000 IQD</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="tender">
+<div class="section-header">
+<h2 class="section-title-en">Tender</h2>
+<div class="section-title-ku">تێندەر</div>
+<div class="section-divider"><span>Golden &amp; Crunchy Shots</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">24</div>
+<img class="food-image" loading="lazy" src="images/Combo 2 .PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Combo</h3>
+<p class="title-ku">کۆمبۆ</p>
+</div>
+<div class="price-engine"><span class="single-price">7,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">25</div>
+<img class="food-image" loading="lazy" src="images/honey musrerd tender.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Honey Mustard Chicken Tender</h3>
+<p class="title-ku">هەنی مەستەردە چیکن تێندەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">3 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">5 PCS</span><span class="price-value">7,500 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">26</div>
+<img class="food-image" loading="lazy" src="images/bbq tender.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">BBQ Tender</h3>
+<p class="title-ku">باربیکیو تێندەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">3 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">5 PCS</span><span class="price-value">7,500 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">27</div>
+<img class="food-image" loading="lazy" src="images/orginal tender.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Original Tender</h3>
+<p class="title-ku">ئۆریجینال تێندەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">3 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">5 PCS</span><span class="price-value">7,500 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">28</div>
+<img class="food-image" loading="lazy" src="images/Sweet chili tendar.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Sweet Chili Tender</h3>
+<p class="title-ku">سوییت چیلی تێندەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">3 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">5 PCS</span><span class="price-value">7,500 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">29</div>
+<img class="food-image" loading="lazy" src="images/Buffalo tendar.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Buffalo Tender</h3>
+<p class="title-ku">بوفالۆ تێندەر</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">3 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">5 PCS</span><span class="price-value">7,500 IQD</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="rizo">
+<div class="section-header">
+<h2 class="section-title-en">Rizo</h2>
+<div class="section-title-ku">ڕیزۆ</div>
+<div class="section-divider"><span>Premium Rice Bowls</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">30</div>
+<img class="food-image" loading="lazy" src="images/tilt rizo.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Tilt Rizo</h3>
+<p class="title-ku">تیلت ڕیزۆ</p>
+</div>
+<div class="price-engine"><span class="single-price">6,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">31</div>
+<img class="food-image" loading="lazy" src="images/Chicken rezo.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Chicken Rizo</h3>
+<p class="title-ku">چیک ڕیزۆ</p>
+</div>
+<div class="price-engine"><span class="single-price">5,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">32</div>
+<img class="food-image" loading="lazy" src="images/Smoke rezo.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Smoke Chicken Rizo</h3>
+<p class="title-ku">سموک چیک ڕیزۆ</p>
+</div>
+<div class="price-engine"><span class="single-price">5,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">33</div>
+<img class="food-image" loading="lazy" src="images/Sweet chili rezo.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Sweet Chili Rizo</h3>
+<p class="title-ku">سوییت چیلی ڕیزۆ</p>
+</div>
+<div class="price-engine"><span class="single-price">5,000 IQD</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="side-dish">
+<div class="section-header">
+<h2 class="section-title-en">Side Dish</h2>
+<div class="section-title-ku">خواردنی لاوەکی</div>
+<div class="section-divider"><span>Perfect Companions</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">34</div>
+<img class="food-image" loading="lazy" src="images/Honey mix.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Honey Mix</h3>
+<p class="title-ku">هەنی میکس</p>
+</div>
+<div class="price-engine"><span class="single-price">7,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">35</div>
+<img class="food-image" loading="lazy" src="images/BBQ mix.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">BBQ Mix</h3>
+<p class="title-ku">باربیکیو میکس</p>
+</div>
+<div class="price-engine"><span class="single-price">7,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">36</div>
+<img class="food-image" loading="lazy" src="images/Doritos mix.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Doritos Mix</h3>
+<p class="title-ku">دۆریتۆس میکس</p>
+</div>
+<div class="price-engine"><span class="single-price">7,000 IQD</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="wings">
+<div class="section-header">
+<h2 class="section-title-en">Wings</h2>
+<div class="section-title-ku">بال</div>
+<div class="section-divider"><span>Glazed &amp; Roasted</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">37</div>
+<img class="food-image" loading="lazy" src="images/bbq wings.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">BBQ Wings</h3>
+<p class="title-ku">باربیکیو وینگز</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">6 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">12 PCS</span><span class="price-value">8,750 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">38</div>
+<img class="food-image" loading="lazy" src="images/Buffalo wings.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Buffalo Wings</h3>
+<p class="title-ku">بوفالۆ وینگز</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">6 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">12 PCS</span><span class="price-value">8,750 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">39</div>
+<img class="food-image" loading="lazy" src="images/orgginal wings.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Original Wings</h3>
+<p class="title-ku">ئۆریجینال وینگز</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">6 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">12 PCS</span><span class="price-value">8,750 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">40</div>
+<img class="food-image" loading="lazy" src="images/Sweet chili wings.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Sweet Chili Wings</h3>
+<p class="title-ku">سوییت چیلی وینگز</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">6 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">12 PCS</span><span class="price-value">8,750 IQD</span></div>
+</div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">41</div>
+<img class="food-image" loading="lazy" src="images/honey musterd wings.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Honey Mustard Wings</h3>
+<p class="title-ku">هەنی مەستەردە وینگز</p>
+</div>
+<div class="price-engine">
+<div class="price-row"><span class="price-label">6 PCS</span><span class="price-value">5,500 IQD</span></div>
+<div class="price-row"><span class="price-label">12 PCS</span><span class="price-value">8,750 IQD</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="fride">
+<div class="section-header">
+<h2 class="section-title-en">Fride</h2>
+<div class="section-title-ku">فڕایەر</div>
+<div class="section-divider"><span>Crispy Entrées</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">42</div>
+<img class="food-image" loading="lazy" src="images/Onions rings.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Onion Rings</h3>
+<p class="title-ku">ئۆنیەن ڕینگز</p>
+</div>
+<div class="price-engine"><span class="single-price">2,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">43</div>
+<img alt="Mozzarella Sticks" class="food-image" loading="lazy"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Mozzarella Sticks</h3>
+<p class="title-ku">مۆزەرێلا ستیکس</p>
+</div>
+<div class="price-engine"><span class="single-price">5,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">44</div>
+<img class="food-image" loading="lazy" src="images/Fries.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Regular Fries</h3>
+<p class="title-ku">ڕێگیولار فرای</p>
+</div>
+<div class="price-engine"><span class="single-price">2,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">45</div>
+<img class="food-image" loading="lazy" src="images/Wedge potatoes  2.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Potato Wedges</h3>
+<p class="title-ku">پۆتاتۆ وێجز</p>
+</div>
+<div class="price-engine"><span class="single-price">3,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">46</div>
+<img class="food-image" loading="lazy" src="images/Tilt fries.PNG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Tilt Fries</h3>
+<p class="title-ku">تیلت فرای</p>
+</div>
+<div class="price-engine"><span class="single-price">4,500 IQD</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="pasta">
+<div class="section-header">
+<h2 class="section-title-en">Pasta</h2>
+<div class="section-title-ku">پاستا</div>
+<div class="section-divider"><span>Italian Intricacies</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">47</div>
+<img class="food-image" loading="lazy" src="images/alfredo pasta.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Alfredo Pasta</h3>
+<p class="title-ku">ئالفرێدۆ پاستا</p>
+</div>
+<div class="price-engine"><span class="single-price">5,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">48</div>
+<img class="food-image" loading="lazy" src="images/bolognese pasta.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Bolognese Pasta</h3>
+<p class="title-ku">بۆلۆنیز پاستا</p>
+</div>
+<div class="price-engine"><span class="single-price">5,500 IQD</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="salad">
+<div class="section-header">
+<h2 class="section-title-en">Salad</h2>
+<div class="section-title-ku">سەلاتە</div>
+<div class="section-divider"><span>Fresh &amp; Crisp Bowls</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">49</div>
+<img class="food-image" loading="lazy" src="images/salad greek.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Greek Salad</h3>
+<p class="title-ku">گریک سەلاتە</p>
+</div>
+<div class="price-engine"><span class="single-price">6,500 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">50</div>
+<img class="food-image" loading="lazy" src="images/salad cacer.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Caesar Salad</h3>
+<p class="title-ku">سیزەر سەلاتە</p>
+</div>
+<div class="price-engine"><span class="single-price">6,500 IQD</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="extra-sauce">
+<div class="section-header">
+<h2 class="section-title-en">Extra Sauce</h2>
+<div class="section-title-ku">سۆس</div>
+<div class="section-divider"><span>Signature Dressings</span></div>
+</div>
+<div class="sauce-grid">
+<div class="sauce-tile">
+<div class="sauce-circle">
+<img alt="BBQ Sauce" class="sauce-image" loading="lazy" src="images/BBQ sauce .PNG"/>
+</div>
+<div class="sauce-info">
+<div class="sauce-en">BBQ</div>
+<span class="sauce-ku">باربیکیو</span>
+</div>
+<div class="sauce-price">500 IQD</div>
+</div>
+<div class="sauce-tile">
+<div class="sauce-circle">
+<img alt="Buffalo Sauce" class="sauce-image" loading="lazy" src="images/Buffalo sauce .PNG"/>
+</div>
+<div class="sauce-info">
+<div class="sauce-en">Buffalo</div>
+<span class="sauce-ku">بوفالۆ</span>
+</div>
+<div class="sauce-price">500 IQD</div>
+</div>
+<div class="sauce-tile">
+<div class="sauce-circle">
+<img alt="Cheddar Sauce" class="sauce-image" loading="lazy" src="images/Cheedar sauce .PNG"/>
+</div>
+<div class="sauce-info">
+<div class="sauce-en">Cheddar</div>
+<span class="sauce-ku">چێدار</span>
+</div>
+<div class="sauce-price">500 IQD</div>
+</div>
+<div class="sauce-tile">
+<div class="sauce-circle">
+<img alt="Honey Mustard Sauce" class="sauce-image" loading="lazy" src="images/Honey mustard sauce .PNG"/>
+</div>
+<div class="sauce-info">
+<div class="sauce-en">Honey Mustard</div>
+<span class="sauce-ku">هەنی مەستەردە</span>
+</div>
+<div class="sauce-price">500 IQD</div>
+</div>
+<div class="sauce-tile">
+<div class="sauce-circle">
+<img alt="Hot Sauce" class="sauce-image" loading="lazy" src="images/Hot sauce .PNG"/>
+</div>
+<div class="sauce-info">
+<div class="sauce-en">Hot</div>
+<span class="sauce-ku">هۆت</span>
+</div>
+<div class="sauce-price">500 IQD</div>
+</div>
+<div class="sauce-tile">
+<div class="sauce-circle">
+<img alt="Ranch Sauce" class="sauce-image" loading="lazy" src="images/Ranch sauce .PNG"/>
+</div>
+<div class="sauce-info">
+<div class="sauce-en">Ranch</div>
+<span class="sauce-ku">ڕانچ</span>
+</div>
+<div class="sauce-price">500 IQD</div>
+</div>
+<div class="sauce-tile">
+<div class="sauce-circle">
+<img alt="Sweet Chili Sauce" class="sauce-image" loading="lazy" src="images/Sweet chili sauce .PNG"/>
+</div>
+<div class="sauce-info">
+<div class="sauce-en">Sweet Chili</div>
+<span class="sauce-ku">سوییت چیلی</span>
+</div>
+<div class="sauce-price">500 IQD</div>
+</div>
+<div class="sauce-tile">
+<div class="sauce-circle">
+<img alt="Tilt Sauce" class="sauce-image" loading="lazy" src="images/Tilt sauce .PNG"/>
+</div>
+<div class="sauce-info">
+<div class="sauce-en">Tilt</div>
+<span class="sauce-ku">تیلت</span>
+</div>
+<div class="sauce-price">500 IQD</div>
+</div>
+</div>
+</section>
+<section class="menu-section" id="drinks">
+<div class="section-header">
+<h2 class="section-title-en">Drinks</h2>
+<div class="section-title-ku">خواردنەوەکان</div>
+<div class="section-divider"><span>Cool &amp; Refreshing</span></div>
+</div>
+<div class="menu-grid">
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">51</div>
+<img class="food-image" loading="lazy" src="images/pepsi.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Pepsi</h3>
+<p class="title-ku">پێپسی</p>
+</div>
+<div class="price-engine"><span class="single-price">1,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">52</div>
+<img class="food-image" loading="lazy" src="images/pepsi-diet.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Pepsi Diet</h3>
+<p class="title-ku">پێپسی دایت</p>
+</div>
+<div class="price-engine"><span class="single-price">1,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">53</div>
+<img class="food-image" loading="lazy" src="images/7up.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">7UP</h3>
+<p class="title-ku">سەڤن ئەپ</p>
+</div>
+<div class="price-engine"><span class="single-price">1,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">54</div>
+<img class="food-image" loading="lazy" src="images/mirinda.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Mirinda Orange</h3>
+<p class="title-ku">میریندا پرتەقاڵ</p>
+</div>
+<div class="price-engine"><span class="single-price">1,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">55</div>
+<img class="food-image" loading="lazy" src="images/mountain-dew.JPG"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Mountain Dew</h3>
+<p class="title-ku">ماونتن دیو</p>
+</div>
+<div class="price-engine"><span class="single-price">1,000 IQD</span></div>
+</div>
+</div>
+<div class="menu-card">
+<div class="image-container">
+<div class="item-number">56</div>
+<img class="food-image" loading="lazy" src="images/Water.png"/>
+</div>
+<div class="card-details">
+<div class="titles-wrapper">
+<h3 class="title-en">Water</h3>
+<p class="title-ku">ئاو</p>
+</div>
+<div class="price-engine"><span class="single-price">500 IQD</span></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<p class="footer-text">© TILT Restaurant — Premium Fast Food Experience</p>
+<p class="developer-credit">DEVELOPED BY AROZ MUSTAFA</p>
+</footer>
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll(".menu-section");
+            const navLinks = document.querySelectorAll("#category-nav a");
+
+            // Scrollspy Mechanics for active class swapping
+            window.addEventListener("scroll", () => {
+                let currentSectionId = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Trigger tracking slightly ahead of exact boundary intersection
+                    if (pageYOffset >= sectionTop - 140) {
+                        currentSectionId = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === `#${currentSectionId}`) {
+                        link.classList.add("active");
+                        
+                        // Centering active element on view track automatically for smaller viewports
+                        link.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest',
+                            inline: 'center'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
